@@ -43,5 +43,5 @@
         "build:js": "npm run build:lib && node scripts/compileDist.js",
         "prepublishOnly": "npm run clean && npm run build:js"
     },
-    "gitHead": "579d6185a2a402d18987660d71006a63e02a0c97"
+    "gitHead": "9b27e018e80bae441673919feb3a75c5d3cb2e41"
 }
