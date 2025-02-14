@@ -1,6 +1,16 @@
 import BaseFoundation, { DefaultAdapter } from "../base/foundation";
-import lottie, { AnimationItem } from "lottie-web";
+// import lottie, { AnimationItem } from "lottie-web";
 import { ArgsType } from "../collapse/foundation";
+let lottie: any = null;
+let AnimationItem: any = null;
+
+if (typeof window !== 'undefined') {
+    // Dynamic import for client-side only
+    import('lottie-web').then((module) => {
+        lottie = module.default;
+        AnimationItem = module.AnimationItem;
+    });
+}
 
 export interface LottieAdapter<P = Record<string, any>, S = Record<string, any>> extends DefaultAdapter<P, S> {
     getContainer: () => Element;
@@ -28,7 +38,7 @@ class LottieFoundation <P = Record<string, any>, S = Record<string, any>> extend
     constructor(adapter: LottieAdapter<P, S>) {
         super({ ...LottieFoundation.defaultAdapter, ...adapter });
     }
-    
+
 
     static getLottie = () => {
         return lottie;
@@ -36,26 +46,20 @@ class LottieFoundation <P = Record<string, any>, S = Record<string, any>> extend
 
     init(lifecycle?: any) {
         super.init(lifecycle);
-        if (typeof document !== 'undefined') {
-            this.animation = lottie.loadAnimation(this._adapter.getLoadParams());
-            this.getProp('getAnimationInstance')?.(this.animation);
-            this.getProp('getLottie')?.(LottieFoundation.getLottie());
-        }
+        this.animation = lottie.loadAnimation(this._adapter.getLoadParams());
+        this.getProp('getAnimationInstance')?.(this.animation);
+        this.getProp('getLottie')?.(LottieFoundation.getLottie());
     }
 
     handleParamsUpdate = () => {
-        if (typeof document !== 'undefined') {
-            this.animation.destroy();
-            this.animation = lottie.loadAnimation(this._adapter.getLoadParams());
-            this.getProp('getAnimationInstance')?.(this.animation);
-        }
+        this.animation.destroy();
+        this.animation = lottie.loadAnimation(this._adapter.getLoadParams());
+        this.getProp('getAnimationInstance')?.(this.animation);
     };
 
     destroy() {
         super.destroy();
-        if (typeof document !== 'undefined') {
-            this.animation.destroy();
-        }
+        this.animation.destroy();
     }
 
 
