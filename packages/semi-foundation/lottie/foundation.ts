@@ -28,28 +28,34 @@ class LottieFoundation <P = Record<string, any>, S = Record<string, any>> extend
     constructor(adapter: LottieAdapter<P, S>) {
         super({ ...LottieFoundation.defaultAdapter, ...adapter });
     }
+    
 
-
-    static getLottie = ()=>{
+    static getLottie = () => {
         return lottie;
-    }
+    };
 
     init(lifecycle?: any) {
         super.init(lifecycle);
-        this.animation = lottie.loadAnimation(this._adapter.getLoadParams());
-        this.getProp("getAnimationInstance")?.(this.animation);
-        this.getProp("getLottie")?.(LottieFoundation.getLottie());
+        if (typeof document !== 'undefined') {
+            this.animation = lottie.loadAnimation(this._adapter.getLoadParams());
+            this.getProp('getAnimationInstance')?.(this.animation);
+            this.getProp('getLottie')?.(LottieFoundation.getLottie());
+        }
     }
 
-    handleParamsUpdate = ()=>{
-        this.animation.destroy();
-        this.animation = lottie.loadAnimation(this._adapter.getLoadParams());
-        this.getProp("getAnimationInstance")?.(this.animation);
-    }
+    handleParamsUpdate = () => {
+        if (typeof document !== 'undefined') {
+            this.animation.destroy();
+            this.animation = lottie.loadAnimation(this._adapter.getLoadParams());
+            this.getProp('getAnimationInstance')?.(this.animation);
+        }
+    };
 
     destroy() {
         super.destroy();
-        this.animation.destroy();
+        if (typeof document !== 'undefined') {
+            this.animation.destroy();
+        }
     }
 
 

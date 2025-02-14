@@ -47,16 +47,16 @@ class Lottie extends BaseComponent<LottieProps, LottieState> {
     }
 
     get adapter(): LottieAdapter<LottieProps, LottieState> {
-        const getContainer = ()=>{
+        const getContainer = () => {
             return this.props.params.container ?? this.container.current;
         };
         return {
             ...super.adapter,
             getContainer,
-            getLoadParams: ()=>{
+            getLoadParams: () => {
                 return {
                     container: getContainer(),
-                    renderer: "svg",
+                    renderer: 'svg',
                     loop: true,
                     autoplay: true,
                     ...this.props.params,
@@ -66,8 +66,10 @@ class Lottie extends BaseComponent<LottieProps, LottieState> {
     }
 
     componentDidMount() {
-        super.componentDidMount();
-        this.props.getAnimationInstance?.(this.foundation.animation);
+        if (typeof document !== 'undefined') {
+            super.componentDidMount();
+            this.props.getAnimationInstance?.(this.foundation.animation);
+        }
     }
 
     componentDidUpdate(prevProps: Readonly<LottieProps>, prevState: Readonly<LottieState>, snapshot?: any) {
