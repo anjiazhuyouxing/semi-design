@@ -11,7 +11,7 @@ module.exports = function (babel) {
                     // 创建变量声明
                     const varDeclaration = t.variableDeclaration('var', [
                         t.variableDeclarator(
-                            t.identifier('_lottieWeb'),
+                            t.identifier('lottie'),
                             t.identifier('undefined')
                         )
                     ]);
@@ -33,7 +33,7 @@ module.exports = function (babel) {
                                                 t.expressionStatement(
                                                     t.assignmentExpression(
                                                         '=',
-                                                        t.identifier('_lottieWeb'),
+                                                        t.identifier('lottie'),
                                                         t.awaitExpression(
                                                             t.callExpression(
                                                                 t.import(),
@@ -65,7 +65,7 @@ module.exports = function (babel) {
                                 t.expressionStatement(
                                     t.assignmentExpression(
                                         '=',
-                                        t.identifier('_lottieWeb'),
+                                        t.identifier('lottie'),
                                         t.callExpression(t.identifier('require'), [
                                             t.stringLiteral('lottie-web')
                                         ])
@@ -74,14 +74,14 @@ module.exports = function (babel) {
                                 t.ifStatement(
                                     t.logicalExpression(
                                         '&&',
-                                        t.identifier('_lottieWeb'),
-                                        t.memberExpression(t.identifier('_lottieWeb'), t.identifier('__esModule'))
+                                        t.identifier('lottie'),
+                                        t.memberExpression(t.identifier('lottie'), t.identifier('__esModule'))
                                     ),
                                     t.expressionStatement(
                                         t.assignmentExpression(
                                             '=',
-                                            t.identifier('_lottieWeb'),
-                                            t.memberExpression(t.identifier('_lottieWeb'), t.identifier('default'))
+                                            t.identifier('lottie'),
+                                            t.memberExpression(t.identifier('lottie'), t.identifier('default'))
                                         )
                                     )
                                 )
