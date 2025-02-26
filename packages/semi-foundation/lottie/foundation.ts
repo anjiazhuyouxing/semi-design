@@ -30,7 +30,7 @@ class LottieFoundation <P = Record<string, any>, S = Record<string, any>> extend
     }
 
 
-    static getLottie = ()=>{
+    static getLottie = () => {
         return lottie;
     }
 
@@ -41,7 +41,7 @@ class LottieFoundation <P = Record<string, any>, S = Record<string, any>> extend
         this.getProp("getLottie")?.(LottieFoundation.getLottie());
     }
 
-    handleParamsUpdate = ()=>{
+    handleParamsUpdate = () => {
         this.animation.destroy();
         this.animation = lottie.loadAnimation(this._adapter.getLoadParams());
         this.getProp("getAnimationInstance")?.(this.animation);
@@ -49,7 +49,7 @@ class LottieFoundation <P = Record<string, any>, S = Record<string, any>> extend
 
     destroy() {
         super.destroy();
-        this.animation.destroy();
+        this.animation?.destroy();
     }
 
 
