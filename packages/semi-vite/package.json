@@ -1,24 +1,35 @@
 {
   "name": "@douyinfe/vite-plugin-semi",
-  "version": "2.74.0",
+  "version": "2.74.0-alpha.1",
   "description": "",
   "author": "田丰 <tianfeng.1012@bytedance.com>",
   "license": "MIT",
-  "main": "lib/index.js",
+  "type": "module",
+  "exports": {
+      ".": {
+          "import": "./lib/index.mjs",
+          "require": "./lib/index.cjs"
+      }
+  },
+  "main": "./lib/index.cjs",
+  "types": "./lib/index.d.ts",
+  "files": [
+      "lib"
+  ],
   "scripts": {
-    "build:lib": "rimraf lib && tsc",
-    "prepublishOnly": "npm run build:lib"
+      "build:lib": "unbuild",
+      "prepublishOnly": "npm run build:lib"
   },
   "directories": {
-    "lib": "lib"
+      "lib": "lib"
   },
-  "files": [
-    "lib"
-  ],
   "peerDependencies": {
-    "vite": "5.1.0"
+      "vite": "5.1.0"
   },
   "dependencies": {
-    "sass": "^1.85.1"
+      "sass": "^1.85.1"
+  },
+  "devDependencies": {
+      "unbuild": "^3.5.0"
   }
 }
