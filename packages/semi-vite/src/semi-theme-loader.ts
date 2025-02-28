@@ -1,5 +1,13 @@
 import componentVariablePathList from "./componentName";
-import { SemiThemeLoaderOptions } from "./vite-plugin-semi";
+
+
+export interface SemiThemeLoaderOptions {
+    name?: string;
+    cssLayer?: boolean;
+    variables?: string;
+    prefixCls?: string;
+    include?: string
+}
 
 export function semiThemeLoader(source: string, options: SemiThemeLoaderOptions) {
     const { name = '@douyinfe/semi-theme-default', cssLayer, variables, prefixCls = 'semi', include } = options;
