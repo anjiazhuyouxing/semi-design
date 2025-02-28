@@ -1,1 +1,3 @@
-export { default as vitePluginSemi } from './vite-plugin-semi';
+import vitePluginSemi from './vite-plugin-semi';
+
+export default vitePluginSemi;
