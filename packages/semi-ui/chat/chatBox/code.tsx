@@ -5,11 +5,12 @@ import copy from 'copy-text-to-clipboard';
 import { IconCopyStroked, IconTick } from '@douyinfe/semi-icons';
 import { nth } from 'lodash';
 import { code } from '../../markdownRender/components';
+import LocaleConsumer from "../../locale/localeConsumer";
+import { Locale } from "../../locale/interface";
 // code's default height type is html/js/css, add jsx & tsx;
 import "prismjs/components/prism-jsx.js";
 import "prismjs/components/prism-tsx.js";
-import LocaleConsumer from "../../locale/localeConsumer";
-import { Locale } from "../../locale/interface";
+
 
 const { PREFIX_CHAT_BOX } = cssClasses;
 

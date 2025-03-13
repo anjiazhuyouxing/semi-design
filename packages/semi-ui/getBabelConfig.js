@@ -19,7 +19,8 @@ module.exports = ({ isESM }) => {
             ],
         ],
         plugins: [
-            'lodash'
+            'lodash',
+            ['./scripts/babel-plugin-prism.js', { isESM }]
         ]
     };
 };
